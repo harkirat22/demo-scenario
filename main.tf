@@ -300,7 +300,7 @@ resource "aws_instance" "web-app-instance" {
   hibernation        = "false"
   instance_type      = "t2.micro"
   ipv6_address_count = "0"
-  key_name           = var.key_name
+  key_name           = aws_key_pair.cg-ec2-key-pair.key_name
 
   metadata_options {
     http_endpoint               = "enabled"
@@ -372,7 +372,7 @@ resource "aws_instance" "privileged-instance" {
   iam_instance_profile = aws_iam_instance_profile.privileged-instance-profile.name
   instance_type        = "t2.micro"
   ipv6_address_count   = "0"
-  key_name             = var.key_name
+  key_name             = aws_key_pair.cg-ec2-key-pair.key_name
 
   metadata_options {
     http_endpoint               = "enabled"

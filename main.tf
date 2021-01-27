@@ -279,6 +279,12 @@ resource "aws_security_group" "web-app-security-group" {
   vpc_id = aws_vpc.demo-vpc.id
 }
 
+#AWS Key pair
+resource "aws_key_pair" "cg-ec2-key-pair" {
+  key_name   = "demo-env"
+  public_key = file(var.ssh-public-key-for-ec2)
+}
+
 resource "aws_instance" "web-app-instance" {
   ami                         = "ami-00ddb0e5626798373"
   associate_public_ip_address = "true"

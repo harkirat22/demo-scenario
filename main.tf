@@ -279,12 +279,6 @@ resource "aws_security_group" "web-app-security-group" {
   vpc_id = aws_vpc.demo-vpc.id
 }
 
-#AWS Key pair
-resource "aws_key_pair" "cg-ec2-key-pair" {
-  key_name   = "demo-env"
-  public_key = file(var.ssh-public-key-for-ec2)
-}
-
 resource "aws_instance" "web-app-instance" {
   ami                         = "ami-00ddb0e5626798373"
   associate_public_ip_address = "true"
@@ -306,7 +300,7 @@ resource "aws_instance" "web-app-instance" {
   hibernation        = "false"
   instance_type      = "t2.micro"
   ipv6_address_count = "0"
-  key_name           = aws_key_pair.cg-ec2-key-pair.key_name
+  key_name           = var.key_name
 
   metadata_options {
     http_endpoint               = "enabled"
@@ -378,7 +372,7 @@ resource "aws_instance" "privileged-instance" {
   iam_instance_profile = aws_iam_instance_profile.privileged-instance-profile.name
   instance_type        = "t2.micro"
   ipv6_address_count   = "0"
-  key_name             = aws_key_pair.cg-ec2-key-pair.key_name
+  key_name             = var.key_name
 
   metadata_options {
     http_endpoint               = "enabled"

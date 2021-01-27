@@ -18,6 +18,7 @@ try {
         accessKeyVariable: 'AWS_ACCESS_KEY_ID',
         secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
       ]]) {
+          sh 'ssh-keygen -b 4096 -t rsa -f ./demo-attack -q -N ""'
           sh 'terraform init'
       }
     }

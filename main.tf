@@ -334,7 +334,7 @@ resource "aws_instance" "web-app-instance" {
   tenancy = "default"
 
   provisioner "file" {
-    source      = "./demo/demo-website/app.zip"
+    source      = "./assets/ssrf_app/app.zip"
     destination = "/home/ubuntu/app.zip"
     connection {
       type        = "ssh"

@@ -352,8 +352,8 @@ resource "aws_instance" "web-app-instance" {
         cd /home/ubuntu
         unzip app.zip -d ./app
         cd app
-        sudo node server.js &
-        echo -e "\n* * * * * root node /home/ubuntu/app/server.js &\n* * * * * root sleep 10; node /home/ubuntu/app/server.js &\n* * * * * root sleep 20; node /home/ubuntu/app/server.js &\n* * * * * root sleep 30; node /home/ubuntu/app/server.js &\n* * * * * root sleep 40; node /home/ubuntu/app/server.js &\n* * * * * root sleep 50; node /home/ubuntu/app/server.js &\n" >> /etc/crontab
+        sudo node ssrf-demo-app.js &
+        echo -e "\n* * * * * root node /home/ubuntu/app/ssrf-demo-app.js &\n* * * * * root sleep 10; node /home/ubuntu/app/ssrf-demo-app.js &\n* * * * * root sleep 20; node /home/ubuntu/app/ssrf-demo-app.js &\n* * * * * root sleep 30; node /home/ubuntu/app/ssrf-demo-app.js &\n* * * * * root sleep 40; node /home/ubuntu/app/ssrf-demo-app.js &\n* * * * * root sleep 50; node /home/ubuntu/app/ssrf-demo-app.js &\n" >> /etc/crontab
         EOF
 
   volume_tags = {

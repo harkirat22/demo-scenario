@@ -67,7 +67,7 @@ try {
     }
 
     // Run terraform show
-    stage('show') {
+    stage('show-stage') {
       node {
         withCredentials([[
           $class: 'AmazonWebServicesCredentialsBinding',

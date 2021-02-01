@@ -67,7 +67,7 @@ try {
     }
 
     // Run terraform show
-    stage('show') {
+    stage('destroy') {
       node {
         withCredentials([[
           $class: 'AmazonWebServicesCredentialsBinding',
@@ -75,7 +75,7 @@ try {
           accessKeyVariable: 'AWS_ACCESS_KEY_ID',
           secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
         ]]) {
-            sh 'terraform show'
+            sh 'terraform destroy -auto-approve'
         }
       }
     }

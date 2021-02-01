@@ -24,6 +24,18 @@ try {
     }
   }
 
+  stage('scan') {
+    node {
+      withCredentials([[
+        $class: 'AmazonWebServicesCredentialsBinding',
+        credentialsId: credentialsId,
+        accessKeyVariable: 'AWS_ACCESS_KEY_ID',
+        secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
+      ]]) {
+          sh 'terrascan scan -v -t aws -f main.tf'
+      }
+    }
+  }
   // Run terraform plan
   stage('plan') {
     node {
@@ -33,7 +45,6 @@ try {
         accessKeyVariable: 'AWS_ACCESS_KEY_ID',
         secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
       ]]) {
-          sh 'terrascan scan .'
           sh 'terraform plan'
       }
     }

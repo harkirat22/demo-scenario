@@ -258,7 +258,7 @@ resource "aws_security_group" "web-app-security-group" {
   }
 
   ingress {
-    cidr_blocks      = ["0.0.0.0/0"]
+    cidr_blocks      = ["10.0.0.0/24"]
     from_port        = 80
     ipv6_cidr_blocks = ["::/0"]
     protocol         = "tcp"
